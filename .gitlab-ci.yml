@@ -1,0 +1,18 @@
+---
+image: gentux/kubectl:1.8
+
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  environment:
+    name: production
+    url: 'https://tv.hempel.io/'
+  tags:
+    - docker
+  script:
+    - echo $KUBE_URL
+    - echo $KUBECONFIG
+    - kubectl config view
+    - kubectl -n $KUBE_NAMESPACE --insecure-skip-tls-verify get pods
