@@ -8,7 +8,7 @@ deploy:
   stage: deploy
   environment:
     name: production
-    url: 'https://tv.hempel.io/'
+    url: 'https://tv.he.im/'
   tags:
     - docker
   script:

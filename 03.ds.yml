@@ -1,0 +1,40 @@
+---
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: tvheadend
+  labels:
+    name: tvheadend
+    tier: tv
+spec:
+  selector:
+    matchLabels:
+      name: tvheadend
+  template:
+    metadata:
+      labels:
+        name: tvheadend
+        tier: tv
+    spec:
+      hostNetwork: true
+      containers:
+        - name: tvheadend
+          image: linuxserver/tvheadend
+          ports:
+            - containerPort: 9981
+              name: web
+            - containerPort: 9982
+              name: htsp
+          volumeMounts:
+            - mountPath: /exports/video
+              name: tvheadend-record-claim
+            - mountPath: /config
+              name: tvheadend-config
+      volumes:
+        - name: tvheadend-record-claim
+          persistentVolumeClaim:
+            claimName: tvheadend-record-claim
+        - name: tvheadend-config
+          hostPath:
+            path: /srv/tvheadend/config
+            type: Directory

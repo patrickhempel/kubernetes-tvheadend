@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tvheadend-record-claim
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 3T
+  selector:
+    matchLabels:
+      app: tvheadend
+      tier: storage
+  volumeName: tvheadend-record

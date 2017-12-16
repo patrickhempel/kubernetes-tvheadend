@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: tvheadend-record
+  labels:
+    app: tvheadend
+    tier: storage
+spec:
+  capacity:
+    storage: 3T
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    path: /volume1/video
+    server: 192.168.1.2
