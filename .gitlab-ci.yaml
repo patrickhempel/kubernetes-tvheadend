@@ -1,0 +1,7 @@
+---
+image: lachlanevenson/k8s-kubectl:latest
+
+deploy:
+script:
+  - kubectl config view
+  - kubectl -n $KUBE_NAMESPACE get pods
